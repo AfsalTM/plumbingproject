@@ -1,0 +1,83 @@
+{% extends 'admin_index.html' %}
+{% block content %}
+    <style>
+        /* Center form-container only within its own div */
+        .form-container-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f9;
+        }
+        .form-container {
+            background-color: #fff;
+            padding: 2em;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        .form-container h2 {
+            margin-bottom: 1em;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 1.5em;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5em;
+            font-weight: bold;
+            color: #333;
+        }
+        input[type="text"], select {
+            width: 100%;
+            padding: 0.5em;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            width: 100%;
+            padding: 0.75em;
+            background-color: #007bff;
+            color: #fff;
+            font-size: 1em;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+
+    <div class="form-container-wrapper">
+        <div class="form-container">
+            <h2>Create Service</h2>
+            <form method="POST" action="{% url 'save_service' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="name">Name of service:</label>
+                    <input type="text" id="name" name="service" required>
+                </div>
+                <div class="form-group">
+                    <label for="skills">Description:</label>
+                    <input type="text" id="skills" name="description" required>
+                </div>
+                <div class="form-group">
+                    <label for="location">Price:</label>
+                    <input type="text" id="location" name="price" required>
+                </div>
+                <button type="submit">Save Service</button>
+            </form>
+            <a href="{% url 'admin_index' %}"><button class="go-btn">Go Index</button></a>
+        </div>
+        <style>
+    .go-btn {
+        margin-top: 10px; /* Adjust the margin to your preference */
+    }
+</style>
+    </div>
+{% endblock %}

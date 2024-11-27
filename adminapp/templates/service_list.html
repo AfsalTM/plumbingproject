@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            margin: 0;
+            height: 100vh; /* Full screen height */
+        }
+        .main-container {
+            width: 100%;
+            max-width: 1200px; /* Max width of the content */
+            background-color: #fff;
+            padding: 1em;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            height: 95%; /* Slightly increased height */
+            display: flex;
+            flex-direction: column;
+        }
+        .table-container {
+            position: relative; /* Position the button inside this container */
+            overflow-x: auto; /* Ensure table is scrollable if needed */
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed; /* Prevents the table from stretching */
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #007bff;
+            color: #fff;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        .go-btn {
+            position: absolute;
+            top: 10px; /* Position from the top */
+            right: 10px; /* Position from the right */
+            padding: 12px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            background-color: #28a745;
+            color: white;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .go-btn:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+        .go-btn:active {
+            background-color: #1e7e34;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+<div class="main-container">
+    <div class="table-container">
+        <a href="{% url 'admin_index' %}">
+            <button class="go-btn">Go Index</button>
+        </a>
+        <h2>Service List</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Service</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for s in service %}
+                <tr>
+                    <td>{{ s.service }}</td>
+                    <td>{{ s.description }}</td>
+                    <td>{{ s.price }}</td>
+                    <td>
+                        <a href="#"><button>Edit</button></a>
+                        <a href="#"><button>Delete</button></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

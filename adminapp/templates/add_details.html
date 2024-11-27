@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body><div>
+<form method="post" action="{% url 'save_details' %}" >
+    {% csrf_token %}
+    <input placeholder="address" name="address">
+    <input placeholder="phone" name="phone">
+    <input placeholder="E-mail" name="email">
+    <button type="submit">Submit</button>
+
+</form>
+    </div>
+</body>
+</html>

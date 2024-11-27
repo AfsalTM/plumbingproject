@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Job Details</title>
+</head>
+<body>
+    <h1>Job Details</h1>
+    <p><strong>Job Code:</strong> {{ booking.job_code }}</p>
+    <p><strong>Name:</strong> {{ booking.user_name }}</p>
+    <p><strong>Phone:</strong> {{ booking.phone }}</p>
+    <p><strong>Booking date:</strong>{{ booking.date }}</p>
+    <p><strong>Skills:</strong>{{ booking.skills }}</p>
+    <p><strong>Booking Service:</strong>{{ booking.service }}</p>
+
+    <!-- Matching Employers Table -->
+    <h2>Matching Employers</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Employer Name</th>
+                <th>Location</th>
+                <th>Skills</th>
+                <th>Match Level</th>
+                <th>Select</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in matched_employers %}
+                <tr>
+                    <td>{{ item.employer.name }}</td>
+                    <td>{{ item.employer.location }}</td>
+                    <td>{{ item.employer.skills }}</td>
+                    <td>{{ item.skill_matches }} skills matched</td>
+                    <td>
+                        <!-- Link to assign employer to this job -->
+                        <a href="#">
+                            <button>Select</button>
+                        </a>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="5">No matching employers found</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
